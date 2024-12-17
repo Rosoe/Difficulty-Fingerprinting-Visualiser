@@ -1,0 +1,64 @@
+.menu-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* Prevent menu from shrinking */
+}
+
+.menu-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.game-name {
+    margin: 0 1rem;
+}
+
+.game-name input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    min-width: 200px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    flex: 1; /* Take up remaining space */
+    min-height: 0; /* Allow content to shrink */
+    box-sizing: border-box;
+    margin: 0;
+    overflow: hidden; /* Prevent overall page scroll */
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        grid-template-columns: 65fr 35fr;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1rem 1rem; /* Reduced top padding */
+    }
+}
+
+.wheel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    padding: 0.5rem; /* Reduced from 1rem to match wheel.css */
+    min-height: 0; /* Allow content to shrink */
+    overflow: hidden; /* Prevent wheel container scroll */
+}
+
+.controls-container {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Only control panel should scroll */
+    min-height: 0; /* Allow content to shrink */
+}

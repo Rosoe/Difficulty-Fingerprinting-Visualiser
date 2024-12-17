@@ -1,0 +1,251 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f3f4f6;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent body scroll */
+}
+
+.container {
+    width: 100%;
+    height: 100%; /* Full height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent container scroll */
+}
+
+/* Menu Bar Styles */
+.menu-button {
+    padding: 6px 12px;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    color: #374151;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.menu-button:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    color: #374151;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #f3f4f6;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #1f2937;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-body > div {
+    margin-bottom: 16px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.close-modal:hover {
+    color: #4b5563;
+}
+
+/* Form Elements */
+.modal-input,
+.modal select,
+.subcategory-name,
+.subcategory-desc {
+    width: 100%;
+    padding: 8px 12px;
+    margin: 4px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #374151;
+    background-color: #ffffff;
+}
+
+.modal-input:focus,
+.modal select:focus,
+.subcategory-name:focus,
+.subcategory-desc:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+.modal label {
+    display: block;
+    margin-bottom: 4px;
+    color: #4b5563;
+    font-size: 14px;
+}
+
+#subcategoriesContainer {
+    margin-top: 20px;
+}
+
+#subcategoryList > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: start;
+}
+
+.remove-subcategory {
+    padding: 4px 8px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-subcategory:hover {
+    background-color: #dc2626;
+}
+
+#addSubcategoryBtn {
+    margin: 8px 0;
+    padding: 6px 12px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#addSubcategoryBtn:hover {
+    background-color: #4338ca;
+}
+
+.modal-footer button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#saveCategory,
+#removeCategory {
+    background-color: #4f46e5;
+    color: white;
+}
+
+#saveCategory:hover,
+#removeCategory:hover {
+    background-color: #4338ca;
+}
+
+.cancel-modal {
+    background-color: #9ca3af;
+    color: white;
+}
+
+.cancel-modal:hover {
+    background-color: #6b7280;
+}
+
+/* Color Input Styling */
+input[type="color"] {
+    -webkit-appearance: none;
+    padding: 0;
+    width: 50px;
+    height: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 2px;
+}

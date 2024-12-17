@@ -1,0 +1,71 @@
+.difficulty-slider {
+    width: 100%;
+    margin: 1rem 0 0.5rem;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    outline: none;
+    transition: background 0.2s ease;
+}
+
+.difficulty-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #4f46e5;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.difficulty-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4f46e5;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.difficulty-slider::-webkit-slider-thumb:hover {
+    background: #4338ca;
+    transform: scale(1.1);
+    box-shadow: 0 3px 6px rgba(79, 70, 229, 0.3);
+}
+
+.difficulty-slider::-moz-range-thumb:hover {
+    background: #4338ca;
+    transform: scale(1.1);
+    box-shadow: 0 3px 6px rgba(79, 70, 229, 0.3);
+}
+
+.difficulty-slider:active::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
+
+.difficulty-slider:active::-moz-range-thumb {
+    transform: scale(1.2);
+}
+
+.difficulty-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4f46e5;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.difficulty-value::before {
+    content: "Difficulty:";
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}

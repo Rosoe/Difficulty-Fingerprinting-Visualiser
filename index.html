@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Difficulty Wheel</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/wheel.css">
+    <link rel="stylesheet" href="css/controls.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        window.onload = function() {
+            window.jsPDF = window.jspdf.jsPDF;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="menu-bar">
+            <div class="menu-group">
+                <div class="game-name">
+                    <input type="text" id="gameName" value="Game Name" placeholder="Game Name">
+                </div>
+                <button id="exportPdfBtn" class="menu-button">Export as PDF</button>
+                <div class="dropdown">
+                    <button id="categoryManageBtn" class="menu-button">Categories ▾</button>
+                    <div class="dropdown-content">
+                        <button id="addCategoryBtn">Add Category</button>
+                        <button id="editCategoryBtn">Edit Category</button>
+                        <button id="removeCategoryBtn">Remove Category</button>
+                        <button id="exportCategoriesBtn">Export Categories</button>
+                        <button id="importCategoriesBtn">Import Categories</button>
+                        <hr>
+                        <button id="exportValuesBtn">Export Values</button>
+                        <button id="importValuesBtn">Import Values</button>
+                    </div>
+                </div>
+                <button id="resetBtn" class="menu-button">Reset</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="wheel-container">
+                <svg id="wheel" viewBox="0 0 800 800"></svg>
+            </div>
+            <div class="controls-container">
+                <div id="difficultyControls"></div>
+            </div>
+        </div>
+    </div>
+    <script src="categories.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/wheel/wheel-svg.js"></script>
+    <script src="js/wheel/category-renderer.js"></script>
+    <script src="js/wheel/subcategory-renderer.js"></script>
+    <script src="js/wheel/center-renderer.js"></script>
+    <script src="js/wheel-renderer.js"></script>
+    <script src="js/controls/controls-generator.js"></script>
+    <script src="js/controls/pdf-exporter.js"></script>
+    <script src="js/controls/modal-manager.js"></script>
+    <script src="js/controls/category-manager.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

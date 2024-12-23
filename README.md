@@ -1,6 +1,6 @@
 # Game Difficulty Fingerprinting Application
 
-A simple web-based tool for creating comprehensive difficulty analysis visualizations for games. This application helps game developers, designers, and researchers analyze and document the various dimensions of difficulty in games using an interactive wheel-based visualization system.
+A simple web-based tool for creating comprehensive difficulty analysis visualizations for games. This application helps game developers, designers, and researchers analyze and document the various dimensions of difficulty in games using an interactive wheel-based visualization system. You can download the files and run it locally or try it out here: https://rosoe.xyz/difficulty-wheel/index.html
 
 ## Overview
 
@@ -16,47 +16,6 @@ The Difficulty Fingerprinting Application allows users to create detailed "finge
   - Export/Import difficulty values
 - **Customizable Game Profiles**: Save and load different game difficulty profiles
 - **Reset Functionality**: Quickly reset values to start a new analysis
-
-## Categories
-
-The application analyzes game difficulty across eight primary dimensions:
-
-1. **Performance** (Physical and Motor Skills)
-   - Reaction Speed
-   - Precision
-   - Input Complexity
-   - Endurance
-
-2. **Execution** (Process Management)
-   - Resource Management
-   - System Monitoring
-   - Scheduling
-
-3. **Comprehension** (Mental Processing)
-   - Pattern Recognition
-   - Spatial Processing
-   - Information Processing
-
-4. **Strategic** (Decision Making)
-   - Planning
-   - Risk Assessment
-
-5. **Research** (Knowledge Acquisition)
-   - Game Knowledge
-   - Community Knowledge
-
-6. **Social** (Interpersonal)
-   - Communication
-   - Group Navigation
-
-7. **Emotional** (Mental Resilience)
-   - Stress Management
-   - Persistence
-
-8. **Creative** (Problem Solving)
-   - Tactical Solutions
-   - Strategic Innovation
-   - Creative Expression
 
 ## How to Use
 

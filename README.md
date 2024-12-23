@@ -17,47 +17,6 @@ The Difficulty Fingerprinting Application allows users to create detailed "finge
 - **Customizable Game Profiles**: Save and load different game difficulty profiles
 - **Reset Functionality**: Quickly reset values to start a new analysis
 
-## Categories
-
-The application analyzes game difficulty across eight primary dimensions:
-
-1. **Performance** (Physical and Motor Skills)
-   - Reaction Speed
-   - Precision
-   - Input Complexity
-   - Endurance
-
-2. **Execution** (Process Management)
-   - Resource Management
-   - System Monitoring
-   - Scheduling
-
-3. **Comprehension** (Mental Processing)
-   - Pattern Recognition
-   - Spatial Processing
-   - Information Processing
-
-4. **Strategic** (Decision Making)
-   - Planning
-   - Risk Assessment
-
-5. **Research** (Knowledge Acquisition)
-   - Game Knowledge
-   - Community Knowledge
-
-6. **Social** (Interpersonal)
-   - Communication
-   - Group Navigation
-
-7. **Emotional** (Mental Resilience)
-   - Stress Management
-   - Persistence
-
-8. **Creative** (Problem Solving)
-   - Tactical Solutions
-   - Strategic Innovation
-   - Creative Expression
-
 ## How to Use
 
 1. Open `index.html` in a web browser

@@ -1,6 +1,6 @@
 # Game Difficulty Fingerprinting Application
 
-A simple web-based tool for creating comprehensive difficulty analysis visualizations for games. This application helps game developers, designers, and researchers analyze and document the various dimensions of difficulty in games using an interactive wheel-based visualization system.
+A simple web-based tool for creating comprehensive difficulty analysis visualizations for games. This application helps game developers, designers, and researchers analyze and document the various dimensions of difficulty in games using an interactive wheel-based visualization system. You can download the files and run it locally or try it out here: https://rosoe.xyz/difficulty-wheel/index.html
 
 ## Overview
 

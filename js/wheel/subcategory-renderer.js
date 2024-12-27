@@ -1,5 +1,9 @@
 const SubcategoryRenderer = {
     render(svg, categories, sectionAngle, center, innerRadius, outerRadius) {
+        if (!State.showSubcategories) {
+            return; // Don't render subcategories if hidden
+        }
+        
         Object.entries(categories).forEach(([category, { color, subcategories }], index) => {
             const startAngle = index * sectionAngle - Math.PI / 2;
             const subAngle = sectionAngle / Object.keys(subcategories).length;

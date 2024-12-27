@@ -1,14 +1,17 @@
 const State = {
     difficulties: {},
+    showSubcategories: true, // Track subcategory visibility
 
     initialize() {
         // Try to load saved state
         const savedState = localStorage.getItem('wheelState');
         const savedCategories = localStorage.getItem('wheelCategories');
+        const savedVisibility = localStorage.getItem('wheelSubcategoryVisibility');
         
         if (savedState && savedCategories) {
             this.difficulties = JSON.parse(savedState);
             Object.assign(categories, JSON.parse(savedCategories));
+            this.showSubcategories = savedVisibility ? JSON.parse(savedVisibility) : true;
         } else {
             // Initialize with default values
             this.resetDifficulties();
@@ -42,6 +45,7 @@ const State = {
     saveState() {
         localStorage.setItem('wheelState', JSON.stringify(this.difficulties));
         localStorage.setItem('wheelCategories', JSON.stringify(categories));
+        localStorage.setItem('wheelSubcategoryVisibility', JSON.stringify(this.showSubcategories));
     },
 
     getCategoryOpacity(category) {
@@ -118,5 +122,12 @@ const State = {
             return true;
         }
         return false;
+    },
+
+    isDefaultCategory(category) {
+        // Check if all subcategories for this category are at their default value of 1
+        return Object.entries(this.difficulties)
+            .filter(([key]) => key.startsWith(category + '-'))
+            .every(([, value]) => value === 1);
     }
 };

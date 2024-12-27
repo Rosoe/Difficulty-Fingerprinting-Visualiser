@@ -15,7 +15,7 @@ const WheelRenderer = {
         const sectionAngle = (2 * Math.PI) / Object.keys(categories).length;
 
         // Render main categories
-        CategoryRenderer.render(svg, categories, sectionAngle, center, innerRadius);
+        CategoryRenderer.render(svg, categories, sectionAngle, center, innerRadius, outerRadius);
 
         // Render subcategories
         SubcategoryRenderer.render(svg, categories, sectionAngle, center, innerRadius, outerRadius);

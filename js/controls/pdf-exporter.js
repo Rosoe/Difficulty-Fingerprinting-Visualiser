@@ -71,7 +71,7 @@ const PDFExporter = {
                             
                             // Add subcategory name and rating
                             pdf.setFont(undefined, 'bold');
-                            pdf.text(`${sub}: ${rating}/10`, 30, y);
+                            pdf.text(`${sub}: ${rating}/100`, 30, y);
                             y += 7;
                             
                             // Add subcategory descriptor

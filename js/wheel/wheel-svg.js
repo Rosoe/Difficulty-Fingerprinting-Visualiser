@@ -13,7 +13,7 @@ const WheelSVG = {
         feDropShadow.setAttribute('dy', '0');
         feDropShadow.setAttribute('stdDeviation', '1.5');
         feDropShadow.setAttribute('flood-color', 'black');
-        feDropShadow.setAttribute('flood-opacity', '0.3');
+        feDropShadow.setAttribute('flood-opacity', '0.7');
         
         filter.appendChild(feDropShadow);
         defs.appendChild(filter);

@@ -45,10 +45,28 @@ const State = {
     },
 
     getCategoryOpacity(category) {
+        // Get this category's raw opacity from its subcategories
         const subRatings = Object.entries(this.difficulties)
             .filter(([key]) => key.startsWith(category))
             .map(([, value]) => value);
-        return (subRatings.reduce((a, b) => a + b, 0) / subRatings.length) / 10;
+        const rawOpacity = (subRatings.reduce((a, b) => a + b, 0) / subRatings.length) / 100;
+        
+        // Get all categories' raw opacities
+        const allOpacities = Object.keys(categories).map(cat => {
+            const ratings = Object.entries(this.difficulties)
+                .filter(([key]) => key.startsWith(cat))
+                .map(([, value]) => value);
+            return (ratings.reduce((a, b) => a + b, 0) / ratings.length) / 100;
+        });
+        
+        // Find the maximum opacity
+        const maxOpacity = Math.max(...allOpacities);
+        
+        // If no categories have any opacity, return the raw value
+        if (maxOpacity === 0) return rawOpacity;
+        
+        // Otherwise, scale the opacity relative to the maximum
+        return rawOpacity / maxOpacity;
     },
 
     updateCategory(categoryName, categoryData) {

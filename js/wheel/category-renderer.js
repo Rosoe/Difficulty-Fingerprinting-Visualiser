@@ -3,16 +3,37 @@ const CategoryRenderer = {
         Object.entries(categories).forEach(([category, { color }], index) => {
             const startAngle = index * sectionAngle - Math.PI / 2;
             const endAngle = startAngle + sectionAngle;
-
-            // Main category section
-            const mainSection = WheelSVG.createSVGElement('path', {
+            const centerlineAngle = startAngle + sectionAngle / 2;
+            
+            // Calculate fill percentage (0-1)
+            const fillPercentage = State.getCategoryOpacity(category);
+            
+            // Create background (unfilled) section
+            const backgroundSection = WheelSVG.createSVGElement('path', {
                 d: `M ${center} ${center} 
                     L ${center + innerRadius * Math.cos(startAngle)} ${center + innerRadius * Math.sin(startAngle)} 
                     A ${innerRadius} ${innerRadius} 0 0 1 ${center + innerRadius * Math.cos(endAngle)} ${center + innerRadius * Math.sin(endAngle)} Z`,
                 fill: color,
-                'fill-opacity': State.getCategoryOpacity(category)
+                'fill-opacity': 0.1
             });
-            svg.appendChild(mainSection);
+            svg.appendChild(backgroundSection);
+
+            // Calculate angles for the filled portion
+            const fillAngleOffset = (sectionAngle * fillPercentage) / 2;
+            const fillStartAngle = centerlineAngle - fillAngleOffset;
+            const fillEndAngle = centerlineAngle + fillAngleOffset;
+
+            // Create filled section
+            if (fillPercentage > 0) {
+                const filledSection = WheelSVG.createSVGElement('path', {
+                    d: `M ${center} ${center} 
+                        L ${center + innerRadius * Math.cos(fillStartAngle)} ${center + innerRadius * Math.sin(fillStartAngle)} 
+                        A ${innerRadius} ${innerRadius} 0 0 1 ${center + innerRadius * Math.cos(fillEndAngle)} ${center + innerRadius * Math.sin(fillEndAngle)} Z`,
+                    fill: color,
+                    'fill-opacity': 1
+                });
+                svg.appendChild(filledSection);
+            }
 
             this.renderLabel(svg, category, startAngle, sectionAngle, center, innerRadius);
         });
@@ -20,7 +41,7 @@ const CategoryRenderer = {
 
     renderLabel(svg, category, startAngle, sectionAngle, center, innerRadius) {
         const labelAngle = startAngle + sectionAngle / 2;
-        const labelRadius = innerRadius * 0.65;
+        const labelRadius = innerRadius * 0.62;
         const labelX = center + labelRadius * Math.cos(labelAngle);
         const labelY = center + labelRadius * Math.sin(labelAngle);
 
@@ -34,6 +55,7 @@ const CategoryRenderer = {
             x: labelX,
             y: labelY,
             'text-anchor': 'middle',
+            'dominant-baseline': 'middle',
             fill: 'white',
             'font-weight': 'bold',
             'font-size': `${fontSize}px`,

@@ -27,19 +27,11 @@ const State = {
             });
         });
 
-        // Reset categories to original state
-        fetch('backup/categories.js')
-            .then(response => response.text())
-            .then(text => {
-                // Extract the object literal from the file content
-                const objectLiteral = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
-                // Parse and assign the original categories
-                Object.assign(categories, JSON.parse(objectLiteral));
-                // Save state and trigger re-renders after categories are updated
-                this.saveState();
-                ControlsGenerator.generate();
-                WheelRenderer.render();
-            });
+        // Reset categories to original state by using the global categories object
+        // which is already loaded via the script tag
+        this.saveState();
+        ControlsGenerator.generate();
+        WheelRenderer.render();
     },
 
     saveState() {

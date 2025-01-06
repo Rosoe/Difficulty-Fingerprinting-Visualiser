@@ -1,20 +1,37 @@
 const SubcategoryRenderer = {
+    calculateMinFontSize(categories, sectionAngle, innerRadius, outerRadius) {
+        let minFontSize = Infinity;
+        
+        Object.entries(categories).forEach(([_, { subcategories }]) => {
+            const subAngle = sectionAngle / Object.keys(subcategories).length;
+            const segmentHeight = outerRadius - innerRadius;
+            // Reduce width by using 1.3 instead of 1.1 for more padding
+            const segmentWidth = 2 * Math.PI * ((innerRadius + outerRadius) / 1.3) * (subAngle / (2 * Math.PI));
+            const fontSize = Math.min(segmentHeight * 0.2, segmentWidth * 0.15);
+            minFontSize = Math.min(minFontSize, fontSize);
+        });
+        
+        return minFontSize;
+    },
+
     render(svg, categories, sectionAngle, center, innerRadius, outerRadius) {
         if (!State.showSubcategories) {
             return; // Don't render subcategories if hidden
         }
+
+        const minFontSize = this.calculateMinFontSize(categories, sectionAngle, innerRadius, outerRadius);
         
         Object.entries(categories).forEach(([category, { color, subcategories }], index) => {
             const startAngle = index * sectionAngle - Math.PI / 2;
             const subAngle = sectionAngle / Object.keys(subcategories).length;
 
             Object.keys(subcategories).forEach((sub, subIndex) => {
-                this.renderSection(svg, category, sub, color, startAngle + subAngle * subIndex, subAngle, center, innerRadius, outerRadius);
+                this.renderSection(svg, category, sub, color, startAngle + subAngle * subIndex, subAngle, center, innerRadius, outerRadius, minFontSize);
             });
         });
     },
 
-    renderSection(svg, category, sub, color, startAngle, subAngle, center, innerRadius, outerRadius) {
+    renderSection(svg, category, sub, color, startAngle, subAngle, center, innerRadius, outerRadius, minFontSize) {
         const endAngle = startAngle + subAngle;
 
         const subSection = WheelSVG.createSVGElement('path', {
@@ -30,20 +47,19 @@ const SubcategoryRenderer = {
         });
         svg.appendChild(subSection);
 
-        this.renderLabel(svg, sub, startAngle, subAngle, center, innerRadius, outerRadius);
+        this.renderLabel(svg, sub, startAngle, subAngle, center, innerRadius, outerRadius, minFontSize);
     },
 
-    renderLabel(svg, sub, startAngle, subAngle, center, innerRadius, outerRadius) {
-        // Calculate dynamic font size and text wrapping parameters
-        const segmentHeight = outerRadius - innerRadius;
-        const segmentWidth = 2 * Math.PI * ((innerRadius + outerRadius) / 1.1) * (subAngle / (2 * Math.PI));
-        const fontSize = Math.min(segmentHeight * 0.2, segmentWidth * 0.15);
-        
-        // Calculate characters that can fit in the wedge width with more generous spacing
-        const charsPerLine = Math.floor(segmentWidth / (fontSize * 0.38)); // Reduced from 0.5 to 0.4 to allow more characters per line
+    renderLabel(svg, sub, startAngle, subAngle, center, innerRadius, outerRadius, minFontSize) {
+        // Calculate text wrapping parameters based on minimum font size
+        // Reduce width by using 1.3 instead of 1.1 for more padding
+        const segmentWidth = 2 * Math.PI * ((innerRadius + outerRadius) / 1.3) * (subAngle / (2 * Math.PI));
+        // Make character width estimation more conservative (0.45 instead of 0.38)
+        const charsPerLine = Math.floor(segmentWidth / (minFontSize * 0.45));
         
         const textAngle = startAngle + subAngle / 2;
-        const textRadiusAdjustment = Math.min(sub.length * 0.3, 10);
+        // Increase text adjustment factor for longer text
+        const textRadiusAdjustment = Math.min(sub.length * 0.4, 15);
         const midRadius = (innerRadius + outerRadius) / 2 - textRadiusAdjustment;
         const textX = center + midRadius * Math.cos(textAngle);
         const textY = center + midRadius * Math.sin(textAngle);
@@ -52,7 +68,7 @@ const SubcategoryRenderer = {
             x: textX,
             y: textY,
             'text-anchor': 'middle',
-            'font-size': `${fontSize}px`,
+            'font-size': `${minFontSize}px`,
             fill: 'white',
             filter: 'url(#textShadow)',
             transform: `rotate(${Utils.getTextRotation(textAngle)}, ${textX}, ${textY})`

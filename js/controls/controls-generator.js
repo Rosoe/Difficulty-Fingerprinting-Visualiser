@@ -3,7 +3,10 @@ const ControlsGenerator = {
         const controlsContainer = document.getElementById('difficultyControls');
         controlsContainer.innerHTML = ''; // Clear existing controls
         
-        Object.entries(categories).forEach(([category, { description, subcategories, color }]) => {
+        // First get the categories data
+        const categoriesData = Object.entries(categories);
+        // Then process each category
+        categoriesData.forEach(([category, { description, subcategories, color }]) => {
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'category';
             categoryDiv.style.borderLeft = `4px solid ${color}`;
@@ -20,7 +23,13 @@ const ControlsGenerator = {
             categoryDiv.appendChild(title);
             categoryDiv.appendChild(desc);
 
-            Object.entries(subcategories).forEach(([sub, desc]) => {
+            // Get subcategories data
+            const subcategoriesData = Object.entries(subcategories);
+            // Process each subcategory
+            subcategoriesData.forEach(([sub, values]) => {
+                // Handle both string and array values
+                const description = typeof values === 'string' ? values : values[0];
+                const thirdValue = Array.isArray(values) ? values[1] : '';
                 const subDiv = document.createElement('div');
                 subDiv.className = 'subcategory';
 
@@ -30,7 +39,11 @@ const ControlsGenerator = {
 
                 const subDesc = document.createElement('p');
                 subDesc.className = 'subcategory-description';
-                subDesc.textContent = desc;
+                subDesc.textContent = description;
+                
+                const thirdField = document.createElement('p');
+                thirdField.className = 'subcategory-third-value';
+                thirdField.textContent = thirdValue;
 
                 const slider = document.createElement('input');
                 slider.type = 'range';
@@ -57,6 +70,7 @@ const ControlsGenerator = {
 
                 subDiv.appendChild(subTitle);
                 subDiv.appendChild(subDesc);
+                subDiv.appendChild(thirdField);
                 subDiv.appendChild(slider);
                 subDiv.appendChild(value);
                 categoryDiv.appendChild(subDiv);

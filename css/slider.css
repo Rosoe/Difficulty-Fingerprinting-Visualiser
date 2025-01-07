@@ -6,7 +6,9 @@
     height: 6px;
     border-radius: 3px;
     outline: none;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
+    --slider-glow: rgba(0, 0, 0, 0);
+    box-shadow: 0 0 10px var(--slider-glow);
 }
 
 .difficulty-slider::-webkit-slider-thumb {
@@ -14,23 +16,23 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    background: #4f46e5;
+    background: var(--thumb-color, #4f46e5);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 2px 4px var(--slider-glow);
 }
 
 .difficulty-slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: #4f46e5;
+    background: var(--thumb-color, #4f46e5);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 2px 4px var(--slider-glow);
 }
 
 .difficulty-slider::-webkit-slider-thumb:hover {
@@ -56,11 +58,18 @@
 .difficulty-value {
     font-size: 1rem;
     font-weight: 600;
-    color: #4f46e5;
+    color: var(--thumb-color, #4f46e5);
     margin: 0.5rem 0;
     display: flex;
     align-items: center;
     gap: 0.25rem;
+}
+
+.difficulty-feedback {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    font-style: italic;
 }
 
 .difficulty-value::before {

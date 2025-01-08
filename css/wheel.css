@@ -33,3 +33,26 @@
     font-weight: bold;
     text-anchor: middle;
 }
+
+/* Difficulty Metrics Styles */
+#wheel .difficulty-metric {
+    cursor: help;
+}
+
+#wheel .metric-label {
+    font-family: Arial, sans-serif;
+    opacity: 0.7;
+}
+
+#wheel .metric-value {
+    font-family: Arial, sans-serif;
+}
+
+#wheel .metric-hover-area {
+    cursor: help;
+}
+
+#wheel .metric-tooltip {
+    pointer-events: none;
+    z-index: 1000;
+}

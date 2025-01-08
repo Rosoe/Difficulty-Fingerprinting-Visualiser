@@ -14,17 +14,26 @@
     align-items: center;
 }
 
-.game-name {
+.game-info {
     margin: 0 1rem;
+    display: flex;
+    gap: 8px;
 }
 
-.game-name input {
+.game-info input {
     padding: 0.5rem;
     border: 1px solid #d1d5db;
     border-radius: 0.25rem;
     font-size: 1rem;
     background: rgba(255, 255, 255, 0.9);
     text-align: center;
+}
+
+#gameName {
+    min-width: 150px;
+}
+
+#gameContext {
     min-width: 200px;
 }
 

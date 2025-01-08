@@ -5,7 +5,6 @@ const SubcategoryRenderer = {
         Object.entries(categories).forEach(([_, { subcategories }]) => {
             const subAngle = sectionAngle / Object.keys(subcategories).length;
             const segmentHeight = outerRadius - innerRadius;
-            // Reduce width by using 1.3 instead of 1.1 for more padding
             const segmentWidth = 2 * Math.PI * ((innerRadius + outerRadius) / 1.3) * (subAngle / (2 * Math.PI));
             const fontSize = Math.min(segmentHeight * 0.2, segmentWidth * 0.15);
             minFontSize = Math.min(minFontSize, fontSize);
@@ -41,9 +40,12 @@ const SubcategoryRenderer = {
                 L ${center + innerRadius * Math.cos(endAngle)} ${center + innerRadius * Math.sin(endAngle)}
                 A ${innerRadius} ${innerRadius} 0 0 0 ${center + innerRadius * Math.cos(startAngle)} ${center + innerRadius * Math.sin(startAngle)}`,
             fill: color,
-            'fill-opacity': State.difficulties[`${category}-${sub}`] / 100,
+            'fill-opacity': Math.min(State.difficulties[`${category}-${sub}`] / 60, 1),
             stroke: 'white',
-            'stroke-width': '1'
+            'stroke-width': '1',
+            filter: State.difficulties[`${category}-${sub}`] > 60 ? 
+                `url(#luminousToAlpha) contrast(${100 + ((State.difficulties[`${category}-${sub}`] - 60) * 8)}%)` : 
+                'none'
         });
         svg.appendChild(subSection);
 
@@ -51,14 +53,10 @@ const SubcategoryRenderer = {
     },
 
     renderLabel(svg, sub, startAngle, subAngle, center, innerRadius, outerRadius, minFontSize) {
-        // Calculate text wrapping parameters based on minimum font size
-        // Reduce width by using 1.3 instead of 1.1 for more padding
         const segmentWidth = 2 * Math.PI * ((innerRadius + outerRadius) / 1.3) * (subAngle / (2 * Math.PI));
-        // Make character width estimation more conservative (0.45 instead of 0.38)
         const charsPerLine = Math.floor(segmentWidth / (minFontSize * 0.45));
         
         const textAngle = startAngle + subAngle / 2;
-        // Increase text adjustment factor for longer text
         const textRadiusAdjustment = Math.min(sub.length * 0.4, 15);
         const midRadius = (innerRadius + outerRadius) / 2 - textRadiusAdjustment;
         const textX = center + midRadius * Math.cos(textAngle);

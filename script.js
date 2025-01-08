@@ -4,7 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     Controls.generate();
     WheelRenderer.renderWheel(categories);
 
-    document.getElementById('gameName').addEventListener('input', () => WheelRenderer.renderWheel(categories));
+    document.getElementById('gameName').addEventListener('input', () => {
+        State.saveState();
+        WheelRenderer.renderWheel(categories);
+    });
+    document.getElementById('gameContext').addEventListener('input', () => {
+        State.saveState();
+        WheelRenderer.renderWheel(categories);
+    });
     
     // Reset button handler
     document.getElementById('resetBtn').addEventListener('click', () => {
